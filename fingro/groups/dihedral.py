@@ -1,6 +1,6 @@
 import numpy as np
 
-from fingro.group import Group
+from fingro.groups import Group
 
 class Dihedral(Group):
 	
