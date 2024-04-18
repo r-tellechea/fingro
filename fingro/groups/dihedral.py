@@ -29,4 +29,4 @@ class Dihedral(Group):
 			check_abelian=False
 		)
 		
-		self.abelian=False
+		self.abelian=(False if k == 1 else True)
