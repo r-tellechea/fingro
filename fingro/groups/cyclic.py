@@ -1,0 +1,24 @@
+import numpy as np
+
+from fingro.groups import Group
+
+class Cyclic(Group):
+	
+	def __init__(self, order: int):
+		
+		matrix = np.mod(
+			np.arange(order) + np.arange(order).reshape((-1,1)), 
+			order
+		)
+
+		element_names = ['1', 'g'] + [f'g{i}' for i in range(2, order)]
+		
+		super().__init__(
+			matrix=matrix,
+			element_names=element_names,
+			check_matrix_type_and_shape=False,
+			check_group_properties=False,
+			check_abelian=False,
+		)
+		
+		self.abelian = True
