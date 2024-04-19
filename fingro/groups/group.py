@@ -33,7 +33,7 @@ class Group:
 				)
 		]
 
-		self.abelian = False
+		self.abelian = None
 		if check_abelian:
 			self.check_abelian()
 	
@@ -56,11 +56,7 @@ class Group:
 						raise ValueError(f'Property: Associativity. ({i=}, {j=}, {k=})')
 
 	def check_abelian(self):
-		for i in range(self.order):
-			for j in range(self.order):
-				if self.matrix[i,j] != self.matrix[j,i]:
-					return None
-		self.abelian = True
+		self.abelian = np.array_equal(self.matrix, self.matrix.T)
 
 	# TODO: Hoverplate: xy = self.elements[index]
 	def fig(self, color_continuous_scale: str='deep'):
