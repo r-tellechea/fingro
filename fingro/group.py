@@ -61,13 +61,8 @@ class Group:
 			raise ValueError('Property: Inverse element.')
 
 		# Check associativity.
-		for i in range(self.order):
-			for j in range(self.order):
-				for k in range(self.order):
-					ij = self.matrix[i, j]
-					jk = self.matrix[j, k]
-					if self.matrix[ij, k] != self.matrix[i, jk]:
-						raise ValueError(f'Property: Associativity. ({i=}, {j=}, {k=})')
+		if not np.array_equal(self.matrix[self.matrix, :], self.matrix[:, self.matrix]):
+			raise ValueError('Property: Associativity.')
 
 	def check_abelian(self):
 		self.abelian = np.array_equal(self.matrix, self.matrix.T)
