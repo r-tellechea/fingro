@@ -27,7 +27,6 @@ class Dihedral(fingro.Group):
 			name=f'D{k}',
 			check_matrix_type_and_shape=False,
 			check_group_properties=False,
-			check_abelian=False
 		)
 		
-		self.abelian=(False if k == 1 else True)
+		self.abelian=(k < 3)

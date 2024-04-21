@@ -26,7 +26,6 @@ class Group:
 		name: str='G',
 		check_matrix_type_and_shape: bool=True,
 		check_group_properties: bool=True,
-		check_abelian: bool=False,
 		
 		):
 
@@ -50,9 +49,7 @@ class Group:
 				)
 		]
 
-		self.abelian = None
-		if check_abelian:
-			self.check_abelian()
+		self._abelian = None
 	
 	def check_group_properties(self):
 		# Check neutral element.
@@ -67,8 +64,14 @@ class Group:
 		if not np.array_equal(self.matrix[self.matrix, :], self.matrix[:, self.matrix]):
 			raise ValueError('Property: Associativity.')
 
+	@property
+	def abelian(self):
+		if self._abelian == None:
+			self.check_abelian()
+		return self._abelian
+
 	def check_abelian(self):
-		self.abelian = np.array_equal(self.matrix, self.matrix.T)
+		self._abelian = np.array_equal(self.matrix, self.matrix.T)
 
 	# TODO: Hoverplate: xy = self.elements[index]
 	def fig(self, color_continuous_scale: str='deep'):
@@ -132,8 +135,6 @@ class Group:
 			group=self,
 			sub_index=center_index,
 			name=f'Z({self.name})',
-			check_normal=False,
-			check_abelian=False,
 		)
 		center.normal = True
 		center.abelian = True

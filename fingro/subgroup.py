@@ -7,8 +7,6 @@ class Subgroup(fingro.Group):
 		group: fingro.Group,
 		sub_index: tuple[int],
 		name: str=None,
-		check_normal: bool=False,
-		check_abelian: bool=False,
 		
 		):
 
@@ -42,7 +40,6 @@ class Subgroup(fingro.Group):
 			name=name if name != None else f'{self.group.name}_{element_names}',
 			check_matrix_type_and_shape=False,
 			check_group_properties=False,
-			check_abelian=check_abelian,
 		)
 
 		self.inclusion = fingro.morfisms.Homomorfism(
@@ -51,16 +48,18 @@ class Subgroup(fingro.Group):
 			cod=self.group,
 			name=f'{self.name}↣{self.group.name}',
 			check_homomorfism=False,
-			check_injective=False,
-			check_surjective=False,
 		)
 		
 		self.inclusion.inj = True
 		self.inclusion.sur = len(self) == len(self.group)
 
-		self.normal = None
-		if check_normal:
+		self._normal = None
+
+	@property
+	def normal(self):
+		if self._normal == None:
 			self.check_normal()
+		return self._normal
 
 	# TODO: Check normal.
 	def check_normal(self):

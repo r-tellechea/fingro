@@ -18,7 +18,6 @@ class Cyclic(fingro.Group):
 			name=f'C{order}',
 			check_matrix_type_and_shape=False,
 			check_group_properties=False,
-			check_abelian=False,
 		)
 		
 		self.abelian = True

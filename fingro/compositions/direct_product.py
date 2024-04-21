@@ -24,10 +24,4 @@ class DirectProduct(fingro.Group):
 			name=f'{G.name}×{H.name}',
 			check_matrix_type_and_shape=False,
 			check_group_properties=False,
-			check_abelian=False,
 		)
-
-		if isinstance(G.abelian, bool) and isinstance(H.abelian, bool):
-			self.abelian = G.abelian and H.abelian
-		else:
-			self.abelian = None

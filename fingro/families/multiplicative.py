@@ -19,7 +19,6 @@ class Multiplicative(fingro.Group):
 			name=f'U{len(coprimes)}',
 			check_matrix_type_and_shape=True,
 			check_group_properties=True,
-			check_abelian=False,
 		)
 
 		self.abelian = True

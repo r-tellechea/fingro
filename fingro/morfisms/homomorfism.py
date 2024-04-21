@@ -11,8 +11,6 @@ class Homomorfism:
 		cod: fingro.Group,
 		name: str='f',
 		check_homomorfism: bool=True,
-		check_injective: bool=False,
-		check_surjective: bool=False,
 
 		):
 
@@ -24,15 +22,9 @@ class Homomorfism:
 		if check_homomorfism:
 			self.check_homomorfism()
 		
-		self.inj = None
-		self.sur = None
-		self.bij = None
-		if check_injective:
-			self.check_injective()
-		if check_surjective:
-			self.check_surjective()
-		if check_injective and check_surjective:
-			self.bij = self.inj and self.sur
+		self._inj = None
+		self._sur = None
+		self._bij = None
 
 	def check_homomorfism(self):
 		for g in self.dom:
@@ -40,28 +32,42 @@ class Homomorfism:
 				if self(g * h) != self(g) * self(h):
 					raise ValueError(f'Not homomorfism: f({g} * {h}) ≠ f({g}) * f({h})')
 
+	@property
+	def inj(self):
+		if self._inj == None:
+			self.check_injective()
+		return self._inj
+
+	@property
+	def sur(self):
+		if self._sur == None:
+			self.check_surjective()
+		return self._sur
+	
+	@property
+	def bij(self):
+		if self._bij == None:
+			self._bij = self.inj and self.sur
+		return self._bij
+
 	def check_injective(self):
 		self.inj = len([i for i in self.f.values() if i == 0]) == 1
 
 	def check_surjective(self):
 		self.sur = len(set(self.f.values())) == len(self.cod)
 	
-	def ker(self, check_normal: bool=False, check_abelian: bool=False) -> fingro.Subgroup:
+	def ker(self) -> fingro.Subgroup:
 		return fingro.Subgroup(
 			group=self.dom,
 			sub_index=tuple( i for i in range(len(self.dom)) if self.f(i) == 0 ),
 			name=f'ker({self.name})',
-			check_normal=check_normal,
-			check_abelian=check_abelian,
 		)
 
-	def im(self, check_normal: bool=False, check_abelian: bool=False) -> fingro.Subgroup:
+	def im(self) -> fingro.Subgroup:
 		return fingro.Subgroup(
 			group=self.cod,
 			sub_index=tuple(set(f(i) for i in range(len(self.dom)))),
 			name=f'im({self.name})',
-			check_normal=check_normal,
-			check_abelian=check_abelian,
 		)
 
 	def __call__(self, g: fingro.Element) -> fingro.Element:
