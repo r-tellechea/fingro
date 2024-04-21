@@ -1,8 +1,7 @@
+import fingro
 import numpy as np
 
-from fingro.groups import Group
-
-class Dihedral(Group):
+class Dihedral(fingro.Group):
 	
 	def __init__(self, k: int):
 	

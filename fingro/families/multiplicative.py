@@ -1,9 +1,8 @@
-from fingro.groups import Group
-
-import numpy as np
+import fingro
 from math import gcd
+import numpy as np
 
-class Multiplicative(Group):
+class Multiplicative(fingro.Group):
 	def __init__(self, n: int):
 		coprimes = [m for m in range(1, n) if gcd(m,n) == 1]
 		matrix = np.array([

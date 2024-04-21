@@ -1,8 +1,7 @@
+import fingro
 import numpy as np
 
-from fingro.groups import Group
-
-class Cyclic(Group):
+class Cyclic(fingro.Group):
 	
 	def __init__(self, order: int):
 		

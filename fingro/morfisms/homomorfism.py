@@ -1,15 +1,14 @@
-import numpy as np
+import fingro
 from typing import Callable
 from functools import reduce
-
-from fingro.groups import Element, Group
+import numpy as np
 
 class Homomorfism:
 	def __init__(self, 
 	
 		f: Callable[int, int], 
-		dom: Group, 
-		cod: Group,
+		dom: fingro.Group, 
+		cod: fingro.Group,
 		name: str='f',
 		check_homomorfism: bool=True,
 		check_injective: bool=False,
@@ -47,13 +46,13 @@ class Homomorfism:
 	def check_surjective(self):
 		self.sur = len(set(self.f.values())) == len(self.cod)
 	
-	def ker(self) -> Group:
+	def ker(self) -> fingro.Group:
 		pass
 
-	def im(self) -> Group:
+	def im(self) -> fingro.Group:
 		pass
 
-	def __call__(self, g: Element):
+	def __call__(self, g: fingro.Element):
 		return self.cod.elements[self.f[g.i]]
 
 	def __str__(self) -> str:
