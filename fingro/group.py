@@ -22,6 +22,7 @@ class Group:
 		
 		matrix: np.ndarray,
 		element_names: list[str]=None,
+		name: str='G',
 		check_matrix_type_and_shape: bool=True,
 		check_group_properties: bool=True,
 		check_abelian: bool=False,
@@ -32,6 +33,7 @@ class Group:
 		
 		self.matrix = matrix
 		self.order = self.matrix.shape[0]
+		self.name = name
 
 		self.element_names = element_names if element_names != None else list(map(str, range(self.order)))
 		self.element_orders = [
@@ -75,6 +77,7 @@ class Group:
 			x=self.element_names,
 			y=self.element_names,
 			labels={'color' : 'xy'},
+			title=self.name,
 		)
 		fig.update_xaxes(
 			title = 'x',
@@ -91,7 +94,8 @@ class Group:
 		fig.update_layout(
 			coloraxis_showscale=False,
 			margin=dict(l=0, r=0, b=30, t=0),
-			width=500
+			width=500,
+			title=dict(font=dict(size=25))
 		)
 		return fig
 

@@ -15,6 +15,7 @@ class Cyclic(fingro.Group):
 		super().__init__(
 			matrix=matrix,
 			element_names=element_names,
+			name=f'C{order}',
 			check_matrix_type_and_shape=False,
 			check_group_properties=False,
 			check_abelian=False,
