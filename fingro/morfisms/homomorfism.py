@@ -46,11 +46,23 @@ class Homomorfism:
 	def check_surjective(self):
 		self.sur = len(set(self.f.values())) == len(self.cod)
 	
-	def ker(self) -> fingro.Group:
-		pass
+	def ker(self, check_normal: bool=False, check_abelian: bool=False) -> fingro.Subgroup:
+		return fingro.Subgroup(
+			group=self.dom,
+			sub_index=tuple( i for i in range(len(self.dom)) if self.f(i) == 0 ),
+			name=f'ker({self.name})',
+			check_normal=check_normal,
+			check_abelian=check_abelian,
+		)
 
-	def im(self) -> fingro.Group:
-		pass
+	def im(self, check_normal: bool=False, check_abelian: bool=False) -> fingro.Subgroup:
+		return fingro.Subgroup(
+			group=self.cod,
+			sub_index=tuple(set(f(i) for i in range(len(self.dom)))),
+			name=f'im({self.name})',
+			check_normal=check_normal,
+			check_abelian=check_abelian,
+		)
 
 	def __call__(self, g: fingro.Element) -> fingro.Element:
 		return self.cod.elements[self.f[g.i]]
