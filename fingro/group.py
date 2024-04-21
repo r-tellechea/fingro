@@ -80,13 +80,13 @@ class Group:
 			title=self.name,
 		)
 		fig.update_xaxes(
-			title = 'x',
+			title = 'y',
 			title_font = {'size': 20},
 			tickfont = {'size': 20},
 			side = 'top'
 		)
 		fig.update_yaxes(
-			title = 'y',
+			title = 'x',
 			title_font = {'size': 20},
 			tickfont = {'size': 20},
 			side = 'left'
