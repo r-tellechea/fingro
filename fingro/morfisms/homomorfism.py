@@ -52,7 +52,7 @@ class Homomorfism:
 	def im(self) -> fingro.Group:
 		pass
 
-	def __call__(self, g: fingro.Element):
+	def __call__(self, g: fingro.Element) -> fingro.Element:
 		return self.cod.elements[self.f[g.i]]
 
 	def __str__(self) -> str:
