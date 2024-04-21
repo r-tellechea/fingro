@@ -50,6 +50,18 @@ class Homomorfism:
 			self._bij = self.inj and self.sur
 		return self._bij
 
+	@inj.setter
+	def inj(self, value):
+		self._inj = value
+
+	@sur.setter
+	def sur(self, value):
+		self._sur = value
+
+	@bij.setter
+	def bij(self, value):
+		self._bij = value 
+
 	def check_injective(self):
 		self.inj = len([i for i in self.f.values() if i == 0]) == 1
 

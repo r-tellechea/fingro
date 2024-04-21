@@ -61,6 +61,10 @@ class Subgroup(fingro.Group):
 			self.check_normal()
 		return self._normal
 
+	@normal.setter
+	def normal(self, value):
+		self._normal = value 
+
 	# TODO: Check normal.
 	def check_normal(self):
 		pass

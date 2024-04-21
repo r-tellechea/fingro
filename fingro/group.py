@@ -70,6 +70,10 @@ class Group:
 			self.check_abelian()
 		return self._abelian
 
+	@abelian.setter
+	def abelian(self, value):
+		self._abelian = value 
+
 	def check_abelian(self):
 		self._abelian = np.array_equal(self.matrix, self.matrix.T)
 
