@@ -99,6 +99,9 @@ class Group:
 		)
 		return fig
 
+	def __str__(self) -> str:
+		return self.name
+
 	def __len__(self):
 		return self.order
 	
