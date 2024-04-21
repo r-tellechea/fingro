@@ -5,13 +5,14 @@ class Dihedral(fingro.Group):
 	
 	def __init__(self, k: int):
 	
-		cyclic_matrix = np.mod(
-			np.arange(k) + np.arange(k).reshape((-1,1)), 
-			k
-		)
+		i = np.arange(k).reshape((-1,1))
+		j = np.arange(k)
+		ij = np.mod(i + j, k)
+		ji = np.mod(j - i, k)
+
 		matrix = np.concatenate([
-			np.concatenate([cyclic_matrix, cyclic_matrix + k], axis=1),
-			np.concatenate([cyclic_matrix + k, cyclic_matrix], axis=1)
+			np.concatenate([ij, ji + k], axis=1),
+			np.concatenate([ij + k, ji], axis=1)
 			], axis=0)
 		element_names = (
 			  ['1', 'σ'] 
