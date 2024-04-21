@@ -1,3 +1,4 @@
+import fingro
 from dataclasses import dataclass
 import numpy as np
 import plotly.express as px
@@ -119,3 +120,21 @@ class Group:
 			current_index = self.matrix[current_index, index]
 			order += 1
 		return order
+
+	def center(self):
+		tup_conmute = (self.matrix == self.matrix.T).all(axis=0)
+		center_index = tuple( 
+			i
+				for i, conmute in enumerate(tup_conmute) 
+					if conmute
+		)
+		center = fingro.Subgroup(
+			group=self,
+			sub_index=center_index,
+			name=f'Z({self.name})',
+			check_normal=False,
+			check_abelian=False,
+		)
+		center.normal = True
+		center.abelian = True
+		return center
