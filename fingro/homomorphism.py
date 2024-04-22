@@ -35,7 +35,7 @@ class Homomorphism:
 		for g in self.dom:
 			for h in self.dom:
 				if self(g * h) != self(g) * self(h):
-					raise ValueError(f'Not homomorphism: f({g} * {h}) ≠ f({g}) * f({h})')
+					raise ValueError(f'Not homomorphism.')
 
 	####################
 	# Properties.
