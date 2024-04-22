@@ -146,3 +146,14 @@ class Group:
 
 	def __xor__(self, other):
 		return fingro.compositions.HomomorfismsGroup(self, other)
+
+	def is_subgroup(self, other) -> bool:
+		for monomorfism in fingro.compositions.compose_functions.get_monomorfisms(self, other):
+			return True
+		return False
+
+	def __lt__(self, other) -> bool:
+		return self.is_subgroup(other)
+
+	def __gt__(self, other) -> bool:
+		return other < self
