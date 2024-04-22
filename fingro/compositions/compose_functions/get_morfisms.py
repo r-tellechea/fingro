@@ -19,7 +19,7 @@ def get_morfisms(
 	for assignation in product(*[dict_assignations[i] for i in range(len(dom))]):
 		try:
 			morfism = fingro.Homomorfism(
-				f = lambda i : assignation[i],
+				f = (lambda i : assignation[i]),
 				dom=dom,
 				cod=cod,
 				check_homomorfism=True,
