@@ -119,3 +119,6 @@ class Homomorfism:
 			raise ValueError('Not the same codomain.')
 
 		return all( self.f[i] == self.g[i] for i in range(len(G)) )
+
+	def __hash__(self) -> int:
+		return hash(self.f)
