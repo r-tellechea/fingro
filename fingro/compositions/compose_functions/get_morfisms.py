@@ -7,7 +7,7 @@ def get_morfisms(
 		cod: fingro.Group,
 		pair_filter: Callable[tuple[fingro.Group], dict[int, tuple[int]]],
 		morfism_filter: Callable[fingro.Homomorfism, bool]=(lambda morfism : True),
-	) -> Generator[fingro.Homomorfism]:
+	) -> Generator:
 
 	dict_assignations = pair_filter(dom, cod)
 	
