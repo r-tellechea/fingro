@@ -49,7 +49,7 @@ class Group:
 			self.get_index_order(i)
 				for i in range(self.order)
 		)
-		self.elements = (
+		self.elements = tuple(
 			Element(i, name, order, self)
 				for i, name, order in zip(
 					range(self.order), 
