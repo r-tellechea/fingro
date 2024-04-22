@@ -22,7 +22,7 @@ class Group:
 	def __init__(self, 
 		
 		matrix: np.ndarray,
-		element_names: list[str]=None,
+		element_names: tuple[str]=None,
 		name: str='G',
 		check_matrix_type_and_shape: bool=True,
 		check_group_properties: bool=True,
@@ -38,19 +38,19 @@ class Group:
 		if check_group_properties:
 			self.check_group_properties()
 
-		self.element_names = element_names if element_names != None else list(map(str, range(self.order)))
-		self.element_orders = [
+		self.element_names = element_names if element_names != None else tuple(map(str, range(self.order)))
+		self.element_orders = tuple(
 			self.get_index_order(i)
 				for i in range(self.order)
-		]
-		self.elements = [
+		)
+		self.elements = (
 			Element(i, name, order, self)
 				for i, name, order in zip(
 					range(self.order), 
 					self.element_names, 
 					self.element_orders
 				)
-		]
+		)
 	
 		self._abelian = None
 	
