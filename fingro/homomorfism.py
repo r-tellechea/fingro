@@ -110,6 +110,19 @@ class Homomorfism:
 			check_homomorfism=False
 		)
 
+	def __matmul__(self, other):
+		
+		if not self.cod == other.dom:
+			raise ValueError(f'{self.name} codomain is not {other.name} domain.')
+
+		return Homomorfism(
+			f=( lambda i : other.f[self.f[i]] ),
+			dom=self.dom,
+			cod=other.cod,
+			name=f'{self.name} @ {other.name}',
+			check_homomorfism=False
+		)
+
 	def __eq__(self, other):
 		
 		if not self.dom == other.dom:
