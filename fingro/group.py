@@ -143,3 +143,6 @@ class Group:
 		center.normal = True
 		center.abelian = True
 		return center
+
+	def __xor__(self, other):
+		return fingro.compositions.HomomorfismsGroup(self, other)
