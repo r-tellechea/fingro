@@ -118,7 +118,7 @@ class Homomorfism:
 		if not self.cod == other.cod:
 			raise ValueError('Not the same codomain.')
 
-		return all( self.f[i] == self.g[i] for i in range(len(G)) )
+		return all( self.f[i] == other.f[i] for i in range(len(self.dom)) )
 
 	def __hash__(self) -> int:
 		return hash(self.f)
