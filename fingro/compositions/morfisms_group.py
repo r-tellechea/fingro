@@ -9,7 +9,8 @@ class MorfismsGroup(fingro.Group):
 		dom: fingro.Group, 
 		cod: fingro.Group,
 		name: str,
-		get_morfisms_fn: Callable,
+		get_morfisms_fn: Callable[tuple[fingro.Group], list[fingro.Homomorfism]],
+		morfism_operation: Callable[tuple[fingro.Homomorfism], fingro.Homomorfism],
 
 		):
 		
@@ -19,7 +20,7 @@ class MorfismsGroup(fingro.Group):
 
 		super().__init__(
 			matrix=np.array([
-				[self.morfisms.index(f1 * f2)
+				[self.morfisms.index(morfism_operation(f1, f2))
 					for f2 in self.morfisms]
 						for f1 in self.morfisms
 			]),
@@ -40,7 +41,8 @@ class HomomorfismsGroup(MorfismsGroup):
 				.compositions
 				.compose_functions
 				.get_homomorfisms
-			)
+			),
+			morfism_operation=(lambda f1, f2: f1 * f2),
 		)
 
 class EndomorfismsGroup(MorfismsGroup):
@@ -55,10 +57,10 @@ class EndomorfismsGroup(MorfismsGroup):
 				.compositions
 				.compose_functions
 				.get_homomorfisms
-			)
+			),
+			morfism_operation=(lambda f1, f2: f1 * f2),
 		)
 
-# TODO: Isomorfisms group is group under homomorfism composition, not product.
 class IsomorfismsGroup(MorfismsGroup):
 	def __init__(self, dom: fingro.Group, cod: fingro.Group):
 		super().__init__(
@@ -70,10 +72,10 @@ class IsomorfismsGroup(MorfismsGroup):
 				.compositions
 				.compose_functions
 				.get_isomorfisms
-			)
+			),
+			morfism_operation=(lambda f1, f2: f1 @ f2),
 		)
 
-# TODO: Automorfisms group is group under homomorfism composition, not product.
 class AutomorfismsGroup(MorfismsGroup):
 	def __init__(self, group: fingro.Group):
 		self.group = group
@@ -86,5 +88,6 @@ class AutomorfismsGroup(MorfismsGroup):
 				.compositions
 				.compose_functions
 				.get_isomorfisms
-			)
+			),
+			morfism_operation=(lambda f1, f2: f1 @ f2),
 		)
