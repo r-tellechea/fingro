@@ -132,6 +132,3 @@ class Homomorfism:
 			raise ValueError('Not the same codomain.')
 
 		return all( self.f[i] == other.f[i] for i in range(len(self.dom)) )
-
-	def __hash__(self) -> int:
-		return hash(self.f)

@@ -14,11 +14,17 @@ class Element:
 		return self.name
 	
 	def __mul__(self, other: 'Element') -> 'Element':
+		# TODO: Change this eq method.
 		if hash(self.group) != hash(other.group):
 			raise ValueError('Operating elements from diferent groups.')
 		return self.group.elements[self.group.matrix[self.i, other.i]]
 
 class Group:
+
+	####################
+	# Initialization.
+	####################
+
 	def __init__(self, 
 		
 		matrix: np.ndarray,
@@ -67,6 +73,10 @@ class Group:
 		if not np.array_equal(self.matrix[self.matrix, :], self.matrix[:, self.matrix]):
 			raise ValueError('Property: Associativity.')
 
+	####################
+	# Properties.
+	####################
+
 	@property
 	def abelian(self):
 		if self._abelian == None:
@@ -79,6 +89,24 @@ class Group:
 
 	def check_abelian(self):
 		self._abelian = np.array_equal(self.matrix, self.matrix.T)
+
+	def get_index_order(self, index: int):
+		current_index = index
+		order = 1
+		while current_index != 0:
+			current_index = self.matrix[current_index, index]
+			order += 1
+		return order
+
+	def __len__(self):
+		return self.order
+
+	####################
+	# Visualization.
+	####################
+
+	def __str__(self) -> str:
+		return self.name
 
 	# TODO: Hoverplate: xy = self.elements[index]
 	def fig(self, color_continuous_scale: str='deep'):
@@ -110,56 +138,42 @@ class Group:
 		)
 		return fig
 
-	def __str__(self) -> str:
-		return self.name
+	####################
+	# Elements.
+	####################
 
-	def __len__(self):
-		return self.order
-	
-	def __hash__(self):
-		return hash(tuple(self.matrix.ravel()))
-	
 	def __iter__(self):
 		for element in self.elements:
 			yield element
 
-	def get_index_order(self, index: int):
-		current_index = index
-		order = 1
-		while current_index != 0:
-			current_index = self.matrix[current_index, index]
-			order += 1
-		return order
+	####################
+	# Arithmetic.
+	####################
 
-	def center(self):
-		tup_conmute = (self.matrix == self.matrix.T).all(axis=0)
-		center_index = tuple( 
-			i
-				for i, conmute in enumerate(tup_conmute) 
-					if conmute
-		)
-		center = fingro.Subgroup(
-			group=self,
-			sub_index=center_index,
-			name=f'Z({self.name})',
-		)
-		center.normal = True
-		center.abelian = True
-		return center
+	def __mul__(self, other):
+		return fingro.compositions.DirectProduct(self, other)
 
 	def __xor__(self, other):
 		return fingro.compositions.HomomorfismsGroup(self, other)
 
-	def is_subgroup(self, other) -> bool:
-		for monomorfism in fingro.compositions.compose_functions.get_monomorfisms(self, other):
-			return True
-		return False
+	####################
+	# Relations.
+	####################
+
+	def __eq__(self, other) -> bool:
+		return fingro.isomorfic(self, other)
+
+	def __ne__(self, other) -> bool:
+		return not self == other
 
 	def __lt__(self, other) -> bool:
-		return self.is_subgroup(other)
+		return fingro.is_subgroup(self, other)
+	
+	def __le__(self, other) -> bool:
+		return self < other
 
 	def __gt__(self, other) -> bool:
 		return other < self
-
-	def get_subgroup(self, other):
-		return fingro.get_subgroup(self, other)
+	
+	def __ge__(self, other) -> bool:
+		return other < self
