@@ -157,3 +157,6 @@ class Group:
 
 	def __gt__(self, other) -> bool:
 		return other < self
+
+	def get_subgroup(self, other):
+		return fingro.get_subgroup(self, other)
