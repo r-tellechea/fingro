@@ -1,1 +1,0 @@
-from fingro.morfisms.homomorfism import Homomorfism
