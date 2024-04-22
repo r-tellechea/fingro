@@ -3,7 +3,7 @@ from typing import Callable
 from functools import reduce
 import numpy as np
 
-class Homomorfism:
+class Homomorphism:
 
 	####################
 	# Initialization.
@@ -15,7 +15,7 @@ class Homomorfism:
 		dom: fingro.Group, 
 		cod: fingro.Group,
 		name: str='f',
-		check_homomorfism: bool=True,
+		check_homomorphism: bool=True,
 
 		):
 
@@ -24,18 +24,18 @@ class Homomorfism:
 		self.cod = cod
 		self.name = name
 
-		if check_homomorfism:
-			self.check_homomorfism()
+		if check_homomorphism:
+			self.check_homomorphism()
 		
 		self._inj = None
 		self._sur = None
 		self._bij = None
 
-	def check_homomorfism(self):
+	def check_homomorphism(self):
 		for g in self.dom:
 			for h in self.dom:
 				if self(g * h) != self(g) * self(h):
-					raise ValueError(f'Not homomorfism: f({g} * {h}) ≠ f({g}) * f({h})')
+					raise ValueError(f'Not homomorphism: f({g} * {h}) ≠ f({g}) * f({h})')
 
 	####################
 	# Properties.
@@ -102,12 +102,12 @@ class Homomorfism:
 		if not self.cod == other.cod:
 			raise ValueError('Not the same codomain.')
 		
-		return Homomorfism(
+		return Homomorphism(
 			f=( lambda i : self.cod.matrix[self.f[i], other.f[i]] ),
 			dom=self.dom,
 			cod=self.cod,
 			name=f'{self.name} * {other.name}',
-			check_homomorfism=False
+			check_homomorphism=False
 		)
 
 	def __matmul__(self, other):
@@ -115,12 +115,12 @@ class Homomorfism:
 		if not self.cod == other.dom:
 			raise ValueError(f'{self.name} codomain is not {other.name} domain.')
 
-		return Homomorfism(
+		return Homomorphism(
 			f=( lambda i : other.f[self.f[i]] ),
 			dom=self.dom,
 			cod=other.cod,
 			name=f'{self.name} @ {other.name}',
-			check_homomorfism=False
+			check_homomorphism=False
 		)
 
 	####################

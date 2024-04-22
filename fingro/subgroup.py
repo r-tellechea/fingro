@@ -42,12 +42,12 @@ class Subgroup(fingro.Group):
 			check_group_properties=False,
 		)
 
-		self.inclusion = fingro.Homomorfism(
+		self.inclusion = fingro.Homomorphism(
 			f = lambda i : self.sub_index[i],
 			dom=self,
 			cod=self.group,
 			name=f'{self.name}↣{self.group.name}',
-			check_homomorfism=False,
+			check_homomorphism=False,
 		)
 		
 		self.inclusion.inj = True

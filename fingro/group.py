@@ -154,14 +154,14 @@ class Group:
 		return fingro.compositions.DirectProduct(self, other)
 
 	def __xor__(self, other):
-		return fingro.compositions.HomomorfismsGroup(self, other)
+		return fingro.compositions.HomomorphismsGroup(self, other)
 
 	####################
 	# Relations.
 	####################
 
 	def __eq__(self, other) -> bool:
-		return fingro.isomorfic(self, other)
+		return fingro.isomorphic(self, other)
 
 	def __ne__(self, other) -> bool:
 		return not self == other

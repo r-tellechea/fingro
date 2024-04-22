@@ -1,5 +1,5 @@
 import fingro.compositions.compose_functions.pair_filters
-from fingro.compositions.compose_functions.get_morfisms import get_morfisms
-from fingro.compositions.compose_functions.get_homomorfisms import get_homomorfisms
-from fingro.compositions.compose_functions.get_monomorfisms import get_monomorfisms
-from fingro.compositions.compose_functions.get_isomorfisms import get_isomorfisms
+from fingro.compositions.compose_functions.get_morphisms import get_morphisms
+from fingro.compositions.compose_functions.get_homomorphisms import get_homomorphisms
+from fingro.compositions.compose_functions.get_monomorphisms import get_monomorphisms
+from fingro.compositions.compose_functions.get_isomorphisms import get_isomorphisms

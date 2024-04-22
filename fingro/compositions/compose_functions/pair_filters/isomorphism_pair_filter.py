@@ -1,6 +1,6 @@
 import fingro
 
-def isomorfism_pair_filter(dom: fingro.Group, cod: fingro.Group) -> dict[int, tuple[int]]:
+def isomorphism_pair_filter(dom: fingro.Group, cod: fingro.Group) -> dict[int, tuple[int]]:
 	return {
 		i : tuple(
 			j for j in range(len(cod)) 
