@@ -16,7 +16,7 @@ class MorfismsGroup(fingro.Group):
 		
 		self.dom = dom
 		self.cod = cod
-		self.morfisms = get_morfisms_fn(self.dom, self.cod)
+		self.morfisms = tuple(get_morfisms_fn(self.dom, self.cod))
 
 		super().__init__(
 			matrix=np.array([

@@ -1,5 +1,5 @@
 import fingro
-from typing import Callable, Type
+from typing import Callable, Type, Generator
 from itertools import product
 
 def get_morfisms(
@@ -7,14 +7,9 @@ def get_morfisms(
 		cod: fingro.Group,
 		pair_filter: Callable[tuple[fingro.Group], dict[int, tuple[int]]],
 		morfism_filter: Callable[fingro.Homomorfism, bool]=(lambda morfism : True),
-	) -> tuple[fingro.Homomorfism]:
+	) -> Generator[fingro.Homomorfism]:
 
 	dict_assignations = pair_filter(dom, cod)
-
-	if 0 in map(len, dict_assignations.values()):
-		return tuple()
-	
-	list_morfisms = []
 	
 	index = 0
 	for assignation in product(*[dict_assignations[i] for i in range(len(dom))]):
@@ -27,9 +22,7 @@ def get_morfisms(
 				name=f'f{index} : {dom.name} → {cod.name}'
 			)
 			if morfism_filter(morfism):
-				list_morfisms.append(morfism)
+				yield morfism
 				index += 1
 		except:
 			pass
-	
-	return tuple(list_morfisms)
