@@ -1,3 +1,5 @@
+import fingro.compositions.compose_functions
+
 from fingro.compositions.direct_product import DirectProduct
 # from fingro.compositions.semidirect_product import SemidirectProduct
 # from fingro.compositions.homomorfisms_group import HomomorfismsGroup
