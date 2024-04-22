@@ -4,6 +4,11 @@ from functools import reduce
 import numpy as np
 
 class Homomorfism:
+
+	####################
+	# Initialization.
+	####################
+	
 	def __init__(self, 
 	
 		f: Callable[int, int], 
@@ -31,6 +36,10 @@ class Homomorfism:
 			for h in self.dom:
 				if self(g * h) != self(g) * self(h):
 					raise ValueError(f'Not homomorfism: f({g} * {h}) ≠ f({g}) * f({h})')
+
+	####################
+	# Properties.
+	####################
 
 	@property
 	def inj(self):
@@ -67,23 +76,10 @@ class Homomorfism:
 
 	def check_surjective(self):
 		self.sur = len(set(self.f.values())) == len(self.cod)
-	
-	def ker(self) -> fingro.Subgroup:
-		return fingro.Subgroup(
-			group=self.dom,
-			sub_index=tuple( i for i in range(len(self.dom)) if self.f(i) == 0 ),
-			name=f'ker({self.name})',
-		)
 
-	def im(self) -> fingro.Subgroup:
-		return fingro.Subgroup(
-			group=self.cod,
-			sub_index=tuple(set(f(i) for i in range(len(self.dom)))),
-			name=f'im({self.name})',
-		)
-
-	def __call__(self, g: fingro.Element) -> fingro.Element:
-		return self.cod.elements[self.f[g.i]]
+	####################
+	# Visualization.
+	####################
 
 	def __str__(self) -> str:
 		return reduce(
@@ -93,6 +89,10 @@ class Homomorfism:
 				self.dom
 			)
 		)
+	
+	####################
+	# Arithmetic.
+	####################
 
 	def __mul__(self, other):
 		
@@ -123,7 +123,11 @@ class Homomorfism:
 			check_homomorfism=False
 		)
 
-	def __eq__(self, other):
+	####################
+	# Relations.
+	####################
+	
+	def __eq__(self, other) -> bool:
 		
 		if not self.dom == other.dom:
 			raise ValueError('Not the same domain.')
@@ -132,3 +136,23 @@ class Homomorfism:
 			raise ValueError('Not the same codomain.')
 
 		return all( self.f[i] == other.f[i] for i in range(len(self.dom)) )
+	
+	def __ne__(self, other) -> bool:
+		return not self == other
+
+	####################
+	# Function.
+	####################
+	
+	def __call__(self, g: fingro.Element) -> fingro.Element:
+		return self.cod.elements[self.f[g.i]]
+
+	####################
+	# Subgroups.
+	####################
+
+	def ker(self) -> fingro.Subgroup:
+		return fingro.ker(self)
+
+	def im(self) -> fingro.Subgroup:
+		return fingro.im(self)
