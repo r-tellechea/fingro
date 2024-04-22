@@ -35,6 +35,9 @@ class Group:
 		self.order = self.matrix.shape[0]
 		self.name = name
 
+		if check_group_properties:
+			self.check_group_properties()
+
 		self.element_names = element_names if element_names != None else list(map(str, range(self.order)))
 		self.element_orders = [
 			self.get_index_order(i)
@@ -48,7 +51,7 @@ class Group:
 					self.element_orders
 				)
 		]
-
+	
 		self._abelian = None
 	
 	def check_group_properties(self):
