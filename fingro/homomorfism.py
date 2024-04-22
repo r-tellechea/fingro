@@ -106,7 +106,7 @@ class Homomorfism:
 			f=( lambda i : self.cod.matrix[self.f[i], other.f[i]] ),
 			dom=self.dom,
 			cod=self.cod,
-			name=f'{self.name}*{other.name}',
+			name=f'{self.name} * {other.name}',
 			check_homomorfism=False
 		)
 
