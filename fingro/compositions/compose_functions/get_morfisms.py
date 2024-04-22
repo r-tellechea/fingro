@@ -16,6 +16,7 @@ def get_morfisms(
 	
 	list_morfisms = []
 	
+	index = 0
 	for assignation in product(*[dict_assignations[i] for i in range(len(dom))]):
 		try:
 			morfism = fingro.Homomorfism(
@@ -23,9 +24,11 @@ def get_morfisms(
 				dom=dom,
 				cod=cod,
 				check_homomorfism=True,
+				name=f'f{index} : {dom.name} → {cod.name}'
 			)
 			if morfism_filter(morfism):
 				list_morfisms.append(morfism)
+				index += 1
 		except:
 			pass
 	
