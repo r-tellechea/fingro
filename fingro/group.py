@@ -14,9 +14,8 @@ class Element:
 		return self.name
 	
 	def __mul__(self, other: 'Element') -> 'Element':
-		# TODO: Change this eq method.
-		# if hash(self.group) != hash(other.group):
-		# 	raise ValueError('Operating elements from diferent groups.')
+		if not np.array_equal(self.group.matrix, other.group.matrix):
+			raise ValueError('Operating elements from diferent groups.')
 		return self.group.elements[self.group.matrix[self.i, other.i]]
 
 class Group:
