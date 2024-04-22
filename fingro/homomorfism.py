@@ -93,3 +93,19 @@ class Homomorfism:
 				self.dom
 			)
 		)
+
+	def __mul__(self, other):
+		
+		if not self.dom == other.dom:
+			raise ValueError('Not the same domain.')
+		
+		if not self.cod == other.cod:
+			raise ValueError('Not the same codomain.')
+		
+		return Homomorfism(
+			f=( lambda i : self.cod.matrix[self.f[i], other.f[i]] ),
+			dom=self.dom,
+			cod=self.cod,
+			name=f'{self.name}*{other.name}',
+			check_homomorfism=False
+		)
