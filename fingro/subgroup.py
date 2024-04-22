@@ -2,6 +2,11 @@ import fingro
 import numpy as np
 
 class Subgroup(fingro.Group):
+
+	####################
+	# Initialization.
+	####################
+
 	def __init__(self, 
 		
 		group: fingro.Group,
@@ -42,18 +47,12 @@ class Subgroup(fingro.Group):
 			check_group_properties=False,
 		)
 
-		self.inclusion = fingro.Homomorphism(
-			f = lambda i : self.sub_index[i],
-			dom=self,
-			cod=self.group,
-			name=f'{self.name}↣{self.group.name}',
-			check_homomorphism=False,
-		)
-		
-		self.inclusion.inj = True
-		self.inclusion.sur = len(self) == len(self.group)
-
 		self._normal = None
+		self._inclusion = None
+
+	####################
+	# Properties.
+	####################
 
 	@property
 	def normal(self):
@@ -68,3 +67,21 @@ class Subgroup(fingro.Group):
 	# TODO: Check normal.
 	def check_normal(self):
 		pass
+
+	@property
+	def inclusion(self):
+		if self._inclusion == None:
+			self.build_inclusion()
+		return self._inclusion
+	
+	def build_inclusion(self):
+		self._inclusion = fingro.Homomorphism(
+			f = lambda i : self.sub_index[i],
+			dom=self,
+			cod=self.group,
+			name=f'{self.name}↣{self.group.name}',
+			check_homomorphism=False,
+		)
+		
+		self._inclusion.inj = True
+		self._inclusion.sur = len(self) == len(self.group)
