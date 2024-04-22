@@ -109,3 +109,13 @@ class Homomorfism:
 			name=f'{self.name}*{other.name}',
 			check_homomorfism=False
 		)
+
+	def __eq__(self, other):
+		
+		if not self.dom == other.dom:
+			raise ValueError('Not the same domain.')
+		
+		if not self.cod == other.cod:
+			raise ValueError('Not the same codomain.')
+
+		return all( self.f[i] == self.g[i] for i in range(len(G)) )
