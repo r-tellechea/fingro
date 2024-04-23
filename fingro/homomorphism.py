@@ -32,9 +32,9 @@ class Homomorphism:
 		self._bij = None
 
 	def check_homomorphism(self):
-		for g in self.dom:
-			for h in self.dom:
-				if self(g * h) != self(g) * self(h):
+		for i in range(len(self.dom)):
+			for j in range(len(self.dom)):
+				if self.f[self.dom.matrix[i,j]] != self.cod.matrix[self.f[i], self.f[j]]:
 					raise ValueError(f'Not homomorphism.')
 
 	####################
