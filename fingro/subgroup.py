@@ -85,3 +85,23 @@ class Subgroup(fingro.Group):
 		
 		self._inclusion.inj = True
 		self._inclusion.sur = len(self) == len(self.group)
+
+	####################
+	# Relations.
+	####################
+
+	def __eq__(self, other) -> bool:
+		if isinstance(other, fingro.Subgroup):
+			same_group = fingro.fn.same_matrix(self.group, other.group)
+			same_index = set(self.sub_index) == set(other.sub_index)
+			if same_group and same_index:
+				return True
+		return super().__eq__(other)
+
+	def __lt__(self, other) -> bool:
+		if isinstance(other, fingro.Subgroup):
+			same_group = fingro.fn.same_matrix(self.group, other.group)
+			same_index = set(self.sub_index) <= set(other.sub_index)
+			if same_group and same_index:
+				return True
+		return super().__lt__(other)
