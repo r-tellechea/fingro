@@ -34,11 +34,12 @@ class Group:
 		
 		):
 
-		# TODO: Check matrix type and shape
-		
 		self.matrix = matrix
 		self.order = self.matrix.shape[0]
 		self.name = name
+
+		if check_matrix_type_and_shape:
+			self.check_matrix_type_and_shape()
 
 		if check_group_properties:
 			self.check_group_properties()
@@ -58,6 +59,10 @@ class Group:
 		)
 	
 		self._abelian = None
+	
+	# TODO: Check matrix type and shape
+	def check_matrix_type_and_shape(self):
+		pass
 	
 	def check_group_properties(self):
 		# Check neutral element.
