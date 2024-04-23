@@ -14,7 +14,7 @@ class Element:
 		return self.name
 	
 	def __mul__(self, other: 'Element') -> 'Element':
-		if not np.array_equal(self.group.matrix, other.group.matrix):
+		if not fingro.same_matrix(self.group, other.group):
 			raise ValueError('Operating elements from diferent groups.')
 		return self.group.elements[self.group.matrix[self.i, other.i]]
 

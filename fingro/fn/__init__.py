@@ -1,5 +1,6 @@
 # Relations.
 from fingro.fn.isomorphic import isomorphic
+from fingro.fn.same_matrix import same_matrix
 from fingro.fn.is_subgroup import is_subgroup
 
 # Subgroups of Groups

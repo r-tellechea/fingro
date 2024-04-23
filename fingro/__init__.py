@@ -4,6 +4,7 @@ from fingro.homomorphism import Homomorphism
 
 # Relations.
 from fingro.fn import isomorphic
+from fingro.fn import same_matrix
 from fingro.fn import is_subgroup
 
 # Subgroups of Groups
