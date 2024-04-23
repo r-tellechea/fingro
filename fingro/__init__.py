@@ -8,6 +8,7 @@ from fingro.fn import same_matrix
 from fingro.fn import is_subgroup
 
 # Subgroups of Groups
+from fingro.fn import generated_subgroup
 from fingro.fn import get_subgroup
 from fingro.fn import center
 

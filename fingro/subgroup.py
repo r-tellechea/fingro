@@ -87,6 +87,26 @@ class Subgroup(fingro.Group):
 		self._inclusion.sur = len(self) == len(self.group)
 
 	####################
+	# Arithmetic.
+	####################
+
+	def __and__(self, other):
+		if not fingro.fn.same_matrix(self.group, other.group):
+			raise ValueError('Not subgroups of the same group.')
+		return fingro.Subgroup(
+			group=self.group,
+			sub_index=tuple( i for i in self.sub_index if i in other.sub_index ),
+		)
+
+	def __or__(self, other):
+		if not fingro.fn.same_matrix(self.group, other.group):
+			raise ValueError('Not subgroups of the same group.')
+		return fingro.fn.generated_subgroup(
+			group=self.group,
+			index=tuple(set(self.sub_index) | set(other.sub_index))
+		)
+
+	####################
 	# Relations.
 	####################
 
