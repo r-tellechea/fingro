@@ -8,6 +8,9 @@ def normal(group: fingro.Group, subgroup: fingro.Subgroup) -> bool:
 	if not fingro.same_matrix(group, subgroup.group):
 		raise ValueError('Not subgroup of the group.')
 	
+	if group.abelian:
+		return True
+	
 	array_index = np.array(
 		tuple(
 		map(
