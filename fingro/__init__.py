@@ -6,6 +6,7 @@ from fingro.homomorphism import Homomorphism
 from fingro.fn import isomorphic
 from fingro.fn import same_matrix
 from fingro.fn import is_subgroup
+from fingro.fn import normal
 
 # Subgroups of Groups
 from fingro.fn import generated_subgroup

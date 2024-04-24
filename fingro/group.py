@@ -57,6 +57,7 @@ class Group:
 					self.element_orders
 				)
 		)
+		self.element_inverses = np.argmin(self.matrix, axis=1)
 	
 		self._abelian = None
 	

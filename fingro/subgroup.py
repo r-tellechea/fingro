@@ -57,7 +57,7 @@ class Subgroup(fingro.Group):
 	@property
 	def normal(self):
 		if self._normal == None:
-			self.check_normal()
+			self._normal = fingro.fn.normal(group=self.group, subgroup=self)
 		return self._normal
 
 	@normal.setter
