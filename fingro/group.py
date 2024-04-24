@@ -102,6 +102,18 @@ class Group:
 			current_index = self.matrix[current_index, index]
 			order += 1
 		return order
+	
+	@property
+	def generators(self):
+		if self._generators == None:
+			pass
+		return self._generators
+
+	@generators.setter
+	def generators(self, index: tuple[int]):
+		if len(self) != len(fingro.generated_subgroup(self, index)):
+			raise ValueError('This index of elements does not generate the group.')
+		self._generators = index
 
 	def __len__(self):
 		return self.order

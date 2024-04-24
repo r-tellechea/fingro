@@ -21,4 +21,5 @@ class Multiplicative(fingro.Group):
 			check_group_properties=True,
 		)
 
-		self.abelian = True
+		self._abelian = True
+		self._generators = None
