@@ -31,6 +31,9 @@ class Homomorphism:
 		self._sur = None
 		self._bij = None
 
+		self._ker = None
+		self._im  = None
+
 	def check_homomorphism(self):
 		for i in range(len(self.dom)):
 			for j in range(len(self.dom)):
@@ -76,6 +79,18 @@ class Homomorphism:
 
 	def check_surjective(self):
 		self.sur = len(set(self.f.values())) == len(self.cod)
+
+	@property
+	def ker(self):
+		if self._ker == None:
+			self._ker = fingro.ker(self)
+		return self._ker
+
+	@property
+	def im(self):
+		if self._im == None:
+			self._im = fingro.im(self)
+		return self._im
 
 	####################
 	# Visualization.
@@ -146,13 +161,3 @@ class Homomorphism:
 	
 	def __call__(self, g: fingro.Element) -> fingro.Element:
 		return self.cod.elements[self.f[g.i]]
-
-	####################
-	# Subgroups.
-	####################
-
-	def ker(self) -> fingro.Subgroup:
-		return fingro.ker(self)
-
-	def im(self) -> fingro.Subgroup:
-		return fingro.im(self)
