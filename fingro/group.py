@@ -89,7 +89,7 @@ class Group:
 		return self._abelian
 
 	@abelian.setter
-	def abelian(self, value):
+	def abelian(self, value: bool):
 		self._abelian = value 
 
 	def check_abelian(self):
