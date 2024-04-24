@@ -53,6 +53,11 @@ def quotient_names(group: fingro.Group, subgroup: fingro.Subgroup) -> list[str]:
 
 class QuotientGroup(fingro.Group):
 	def __init__(self, group: fingro.Group, subgroup: fingro.Subgroup):
+		if not fingro.is_subgroup(subgroup, group):
+			raise ValueError('Not a subgroup of the group')
+		if not subgroup.normal:
+			raise ValueError('Not a normal subgroup.')
+		
 		super().__init__(
 			matrix=quotient_matrix(group, subgroup),
 			element_names=quotient_names(group, subgroup),
