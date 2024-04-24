@@ -20,4 +20,5 @@ class Cyclic(fingro.Group):
 			check_group_properties=False,
 		)
 		
-		self.abelian = True
+		self._abelian = True
+		self._generators = (1,)

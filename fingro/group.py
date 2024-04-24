@@ -59,7 +59,9 @@ class Group:
 		)
 		self.element_inverses = np.argmin(self.matrix, axis=1)
 	
+		# Properties
 		self._abelian = None
+		self._generators = None
 	
 	# TODO: Check matrix type and shape
 	def check_matrix_type_and_shape(self):
