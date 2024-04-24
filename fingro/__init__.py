@@ -9,6 +9,7 @@ from fingro.fn import is_subgroup
 from fingro.fn import normal
 
 # Subgroups of Groups
+from fingro.fn import generators
 from fingro.fn import generated_subgroup
 from fingro.fn import get_subgroup
 from fingro.fn import center

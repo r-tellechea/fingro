@@ -5,6 +5,7 @@ from fingro.fn.is_subgroup import is_subgroup
 from fingro.fn.normal import normal
 
 # Subgroups of Groups
+from fingro.fn.generators import generators
 from fingro.fn.generated_subgroup import generated_subgroup
 from fingro.fn.get_subgroup import get_subgroup
 from fingro.fn.center import center
