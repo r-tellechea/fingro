@@ -1,6 +1,8 @@
 import fingro
 import numpy as np
 
+from itertools import product
+
 def normal(group: fingro.Group, subgroup: fingro.Subgroup) -> bool:
 	
 	if not fingro.same_matrix(group, subgroup.group):
@@ -11,7 +13,10 @@ def normal(group: fingro.Group, subgroup: fingro.Subgroup) -> bool:
 		map(
 			lambda t : (t[0][0], t[1], t[0][1]),
 			product(
-				zip(range(len(group)), group.element_inverses),
+				zip(
+					range(len(group)), 
+					group.element_inverses
+				),
 				subgroup.sub_index
 			)
 		))
