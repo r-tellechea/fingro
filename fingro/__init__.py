@@ -1,4 +1,4 @@
-from fingro.group import Element, Group
+from fingro.group import Group
 from fingro.subgroup import Subgroup
 from fingro.homomorphism import Homomorphism
 

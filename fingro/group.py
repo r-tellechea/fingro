@@ -3,21 +3,6 @@ from dataclasses import dataclass
 import numpy as np
 import plotly.express as px
 
-@dataclass
-class Element:
-	i: int
-	name: str
-	order: int
-	group: 'Group'
-
-	def __str__(self) -> str:
-		return self.name
-	
-	def __mul__(self, other: 'Element') -> 'Element':
-		if not fingro.same_matrix(self.group, other.group):
-			raise ValueError('Operating elements from diferent groups.')
-		return self.group.elements[self.group.matrix[self.i, other.i]]
-
 class Group:
 
 	####################
@@ -48,14 +33,6 @@ class Group:
 		self.element_orders = tuple(
 			self.get_index_order(i)
 				for i in range(self.order)
-		)
-		self.elements = tuple(
-			Element(i, name, order, self)
-				for i, name, order in zip(
-					range(self.order), 
-					self.element_names, 
-					self.element_orders
-				)
 		)
 		self.element_inverses = np.argmin(self.matrix, axis=1)
 	
@@ -127,7 +104,7 @@ class Group:
 	def __str__(self) -> str:
 		return self.name
 
-	# TODO: Hoverplate: xy = self.elements[index]
+	# TODO: Hoverplate: xy = self.element_names[index]
 	def fig(self, color_continuous_scale: str='deep'):
 		fig = px.imshow(
 			self.matrix,
@@ -161,9 +138,7 @@ class Group:
 	# Elements.
 	####################
 
-	def __iter__(self):
-		for element in self.elements:
-			yield element
+
 
 	####################
 	# Arithmetic.

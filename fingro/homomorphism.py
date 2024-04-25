@@ -159,5 +159,5 @@ class Homomorphism:
 	# Function.
 	####################
 	
-	def __call__(self, g: fingro.Element) -> fingro.Element:
-		return self.cod.elements[self.f[g.i]]
+	def __call__(self, i: int) -> int:
+		return self.f(i)
