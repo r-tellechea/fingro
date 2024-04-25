@@ -76,7 +76,7 @@ class Subgroup(fingro.Group):
 	
 	def build_inclusion(self):
 		self._inclusion = fingro.Homomorphism(
-			f = lambda i : self.sub_index[i],
+			f=np.array(self.sub_index),
 			dom=self,
 			cod=self.group,
 			name=f'{self.name}↣{self.group.name}',

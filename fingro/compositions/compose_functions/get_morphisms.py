@@ -1,4 +1,5 @@
 import fingro
+import numpy as np
 from typing import Callable, Type, Generator
 from itertools import product
 
@@ -15,7 +16,7 @@ def get_morphisms(
 	for assignation in product(*[dict_assignations[i] for i in range(len(dom))]):
 		try:
 			morphism = fingro.Homomorphism(
-				f = (lambda i : assignation[i]),
+				f=np.array(assignation),
 				dom=dom,
 				cod=cod,
 				check_homomorphism=True,
@@ -24,5 +25,6 @@ def get_morphisms(
 			if morphism_filter(morphism):
 				yield morphism
 				index += 1
-		except:
-			pass
+		except ValueError as e:
+			if not str(e) == 'Not homomorphism.':
+				raise e

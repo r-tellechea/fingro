@@ -11,7 +11,7 @@ class Homomorphism:
 	
 	def __init__(self, 
 	
-		f: Callable[int, int], 
+		f: np.ndarray, 
 		dom: fingro.Group, 
 		cod: fingro.Group,
 		name: str='f',
@@ -19,7 +19,7 @@ class Homomorphism:
 
 		):
 
-		self.f = { i : f(i) for i in range(dom.order) }
+		self.f = f
 		self.dom = dom
 		self.cod = cod
 		self.name = name
@@ -35,10 +35,19 @@ class Homomorphism:
 		self._im  = None
 
 	def check_homomorphism(self):
-		for i in range(len(self.dom)):
-			for j in range(len(self.dom)):
-				if self.f[self.dom.matrix[i,j]] != self.cod.matrix[self.f[i], self.f[j]]:
-					raise ValueError(f'Not homomorphism.')
+		
+		index_dom = np.arange(len(self.dom))
+		
+		homomorphism_condition = np.array_equal(
+			self(self.dom.matrix),
+
+			self.cod.matrix
+			[self(index_dom),:]
+			[:,self(index_dom)]			
+		)
+
+		if not homomorphism_condition:
+			raise ValueError('Not homomorphism.')
 
 	####################
 	# Properties.
@@ -75,10 +84,10 @@ class Homomorphism:
 		self._bij = value 
 
 	def check_injective(self):
-		self.inj = len([i for i in self.f.values() if i == 0]) == 1
+		self.inj = (self.f == 0).sum() == 1
 
 	def check_surjective(self):
-		self.sur = len(set(self.f.values())) == len(self.cod)
+		self.sur = len(set(self.f)) == len(self.cod)
 
 	@property
 	def ker(self):
@@ -118,7 +127,7 @@ class Homomorphism:
 			raise ValueError('Not the same codomain.')
 		
 		return Homomorphism(
-			f=( lambda i : self.cod.matrix[self.f[i], other.f[i]] ),
+			f=self.cod.matrix[self.f, other.f],
 			dom=self.dom,
 			cod=self.cod,
 			name=f'{self.name} * {other.name}',
@@ -131,7 +140,7 @@ class Homomorphism:
 			raise ValueError(f'{self.name} codomain is not {other.name} domain.')
 
 		return Homomorphism(
-			f=( lambda i : other.f[self.f[i]] ),
+			f=other.f[self.f],
 			dom=self.dom,
 			cod=other.cod,
 			name=f'{self.name} @ {other.name}',
@@ -159,5 +168,5 @@ class Homomorphism:
 	# Function.
 	####################
 	
-	def __call__(self, i: int) -> int:
-		return self.f(i)
+	def __call__(self, i: int|np.ndarray) -> int:
+		return self.f[i]
