@@ -12,8 +12,9 @@ class Group:
 	def __init__(self, 
 		
 		matrix: np.ndarray,
-		element_names: tuple[str]=None,
 		name: str='G',
+		elements: tuple|None=None,
+		element_names: tuple[str]=None,
 		check_matrix_type_and_shape: bool=True,
 		check_group_properties: bool=True,
 		
@@ -39,6 +40,8 @@ class Group:
 		# Properties
 		self._abelian = None
 		self._generators = None
+		self._elements = None
+		self.elements = elements
 	
 	# TODO: Check matrix type and shape
 	def check_matrix_type_and_shape(self):
@@ -94,6 +97,20 @@ class Group:
 			raise ValueError('This index of elements does not generate the group.')
 		self._generators = index
 
+	@property
+	def elements(self):
+		if self._elements == None:
+			pass
+		return self._elements
+
+	@elements.setter
+	def elements(self, elements: tuple | None):
+		if elements == None:
+			return
+		if len(elements) != len(self):
+			raise ValueError('Not as many elements as the group order.')
+		self._elements = elements if isinstance(elements, tuple) else tuple(elements)
+
 	def __len__(self):
 		return self.order
 
@@ -133,12 +150,6 @@ class Group:
 			title=dict(font=dict(size=25))
 		)
 		return fig
-
-	####################
-	# Elements.
-	####################
-
-
 
 	####################
 	# Arithmetic.

@@ -16,16 +16,17 @@ class morphismsGroup(fingro.Group):
 		
 		self.dom = dom
 		self.cod = cod
-		self.morphisms = tuple(get_morphisms_fn(self.dom, self.cod))
+		morphisms = tuple(get_morphisms_fn(self.dom, self.cod))
 
 		super().__init__(
 			matrix=np.array([
-				[self.morphisms.index(morphism_operation(f1, f2))
-					for f2 in self.morphisms]
-						for f1 in self.morphisms
+				[morphisms.index(morphism_operation(f1, f2))
+					for f2 in morphisms]
+						for f1 in morphisms
 			]),
-			element_names=[f.name for f in self.morphisms],
 			name=f'{name}({self.dom.name}, {self.cod.name})',
+			elements=morphisms,
+			element_names=[f.name for f in morphisms],
 			check_matrix_type_and_shape=False,
 			check_group_properties=False
 		)

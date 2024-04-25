@@ -14,8 +14,9 @@ class Cyclic(fingro.Group):
 		
 		super().__init__(
 			matrix=matrix,
-			element_names=element_names,
 			name=f'C{order}',
+			elements=tuple(range(order)),
+			element_names=element_names,
 			check_matrix_type_and_shape=False,
 			check_group_properties=False,
 		)

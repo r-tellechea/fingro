@@ -23,8 +23,9 @@ class Dihedral(fingro.Group):
 		
 		super().__init__(
 			matrix=matrix,
-			element_names=element_names,
 			name=f'D{k}',
+			elements=tuple(range(2*k)),
+			element_names=element_names,
 			check_matrix_type_and_shape=False,
 			check_group_properties=False,
 		)

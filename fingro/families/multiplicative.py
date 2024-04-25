@@ -15,8 +15,9 @@ class Multiplicative(fingro.Group):
 
 		super().__init__(
 			matrix=matrix,
-			element_names=element_names,
 			name=f'U{n}',
+			elements=tuple(coprimes),
+			element_names=element_names,
 			check_matrix_type_and_shape=True,
 			check_group_properties=True,
 		)

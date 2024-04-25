@@ -1,7 +1,7 @@
 import fingro
 import numpy as np
 
-def quotient_matrix(group: fingro.Group, subgroup: fingro.Subgroup):
+def quotient_matrix_classes_names(group: fingro.Group, subgroup: fingro.Subgroup):
 		
 	array_classes = (
 		np.unique(
@@ -33,23 +33,23 @@ def quotient_matrix(group: fingro.Group, subgroup: fingro.Subgroup):
 		.astype('int')
 	)
 
-	return matrix
+	return (
+		# Matrix
+		matrix,
+		
+		# Classes.
+		tuple(
+			tuple(class_array)
+				for class_array in array_classes
+		),
 
-def quotient_names(group: fingro.Group, subgroup: fingro.Subgroup) -> list[str]:
-	representatives = (
-		np.unique(
-			np.sort(
-				group.matrix[:,subgroup.sub_index],
-				axis=1
-			),
-			axis=0
+		# Class names.
+		tuple(
+			f'[{group.element_names[i]}]' 
+				for i in array_class_representatives
 		)
-		.min(axis=1)
 	)
-	return [
-		f'[{group.element_names[i]}]' 
-			for i in representatives
-	]
+
 
 class QuotientGroup(fingro.Group):
 	def __init__(self, group: fingro.Group, subgroup: fingro.Subgroup):
@@ -58,8 +58,15 @@ class QuotientGroup(fingro.Group):
 		if not subgroup.normal:
 			raise ValueError('Not a normal subgroup.')
 		
+		matrix, classes, names = quotient_matrix_classes_names(
+			group, subgroup
+		)
+		
 		super().__init__(
-			matrix=quotient_matrix(group, subgroup),
+			matrix=matrix,
+			name=f'{group.name}/{subgroup.name}',
+			elements=classes,
 			element_names=quotient_names(group, subgroup),
-			name=f'{group.name}/{subgroup.name}'
+			check_matrix_type_and_shape=False,
+			check_group_properties=False
 		)
