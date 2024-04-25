@@ -175,6 +175,9 @@ class Group:
 	def __xor__(self, other):
 		return fingro.compositions.HomomorphismsGroup(self, other)
 
+	def __truediv__(self, other):
+		return fingro.compositions.QuotientGroup(self, other)
+
 	####################
 	# Relations.
 	####################
