@@ -108,10 +108,8 @@ class Homomorphism:
 	def __str__(self) -> str:
 		return reduce(
 			lambda x, y : f'{x}\n{y}',
-			map(
-				lambda g : f'{self.name}({g}) = {self(g)}',
-				self.dom
-			)
+			(f'{self.name}({self.dom.element_names[i]}) = {self.cod.element_names[fi]}'
+				for i, fi in enumerate(self.f))
 		)
 	
 	####################
