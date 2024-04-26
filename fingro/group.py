@@ -88,7 +88,7 @@ class Group:
 	@property
 	def generators(self):
 		if self._generators == None:
-			pass
+			self._generators = fingro.fn.generators(self)
 		return self._generators
 
 	@generators.setter
