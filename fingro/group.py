@@ -106,7 +106,7 @@ class Group:
 	@elements.setter
 	def elements(self, elements: tuple | None):
 		if elements == None:
-			return
+			self._elements = tuple(range(len(self)))
 		if len(elements) != len(self):
 			raise ValueError('Not as many elements as the group order.')
 		self._elements = elements if isinstance(elements, tuple) else tuple(elements)

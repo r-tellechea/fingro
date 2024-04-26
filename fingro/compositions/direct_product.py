@@ -24,11 +24,7 @@ class DirectProduct(fingro.Group):
 		super().__init__(
 			matrix=matrix,
 			name=f'{G1.name}×{G2.name}',
-			elements=(
-				tuple(product(G1.elements, G2.elements)) 
-					if G1.elements != None and G2.elements != None 
-						else None
-			),
+			elements=tuple(product(G1.elements, G2.elements)),
 			element_names=element_names,
 			check_matrix_type_and_shape=False,
 			check_group_properties=False,
