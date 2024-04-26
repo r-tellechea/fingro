@@ -30,6 +30,8 @@ class DirectProduct(fingro.Group):
 			check_group_properties=False,
 		)
 
+	# TODO: This is not a correct implementation. 
+	# C2 * C7 has only one generator.
 	@property
 	def generators(self):
 		if self._generators == None:
