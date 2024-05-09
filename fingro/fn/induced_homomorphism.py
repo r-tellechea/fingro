@@ -5,7 +5,8 @@ def induced_homomorphism(
 	dom: fingro.Group,
 	cod: fingro.Group,
 	generator_images: tuple[int],
-	name: str='f'
+	name: str='f',
+	check_homomorphism: bool=True,
 	) -> fingro.Homomorphism:
 
 	im_array = np.array([
@@ -18,5 +19,5 @@ def induced_homomorphism(
 		dom=dom,
 		cod=cod,
 		name=name,
-		check_homomorphism=False,
+		check_homomorphism=check_homomorphism,
 	)
