@@ -10,6 +10,13 @@ from fingro.fn.generated_subgroup import generated_subgroup
 from fingro.fn.get_subgroup import get_subgroup
 from fingro.fn.center import center
 
+# Element manipulation
+from fingro.fn.index_power import index_power
+from fingro.fn.gen_index import gen_index
+
+# Homomorphisms from generators
+from fingro.fn.induced_homomorphism import induced_homomorphism
+
 # Subgroups of Homomorphism.
 from fingro.fn.ker import ker
 from fingro.fn.im import im

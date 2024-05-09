@@ -42,6 +42,7 @@ class Group:
 		self._generators = None
 		self._elements = None
 		self.elements = elements
+		self._gen_index = None
 	
 	# TODO: Check matrix type and shape
 	def check_matrix_type_and_shape(self):
@@ -111,6 +112,12 @@ class Group:
 		if len(elements) != len(self):
 			raise ValueError('Not as many elements as the group order.')
 		self._elements = elements if isinstance(elements, tuple) else tuple(elements)
+
+	@property
+	def gen_index(self):
+		if self._gen_index == None:
+			self._gen_index = fingro.fn.gen_index(self)
+		return self._gen_index
 
 	def __len__(self):
 		return self.order
