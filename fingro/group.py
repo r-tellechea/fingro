@@ -100,7 +100,7 @@ class Group:
 	@property
 	def elements(self):
 		if self._elements == None:
-			pass
+			self._elements = tuple(range(len(self)))
 		return self._elements
 
 	@elements.setter
