@@ -66,7 +66,7 @@ class QuotientGroup(fingro.Group):
 			matrix=matrix,
 			name=f'{group.name}/{subgroup.name}',
 			elements=classes,
-			element_names=quotient_names(group, subgroup),
+			element_names=names,
 			check_matrix_type_and_shape=False,
 			check_group_properties=False
 		)
