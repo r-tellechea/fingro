@@ -61,6 +61,9 @@ def remove_redundant_generators(cicles: dict[tuple[int], set[int]]) -> dict[tupl
 
 def generators(group: fingro.Group) -> tuple[int]:
 	
+	if len(group) == 1:
+		return (0,)
+	
 	maximal_cicles = remove_redundant_generators(get_cicles(group))
 	
 	for i, cicle in maximal_cicles.items():

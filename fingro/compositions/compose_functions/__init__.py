@@ -1,4 +1,4 @@
-import fingro.compositions.compose_functions.pair_filters
+import fingro.compositions.compose_functions.gen_im_filter
 from fingro.compositions.compose_functions.get_morphisms import get_morphisms
 from fingro.compositions.compose_functions.get_homomorphisms import get_homomorphisms
 from fingro.compositions.compose_functions.get_monomorphisms import get_monomorphisms

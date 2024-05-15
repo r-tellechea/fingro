@@ -4,6 +4,12 @@ def get_isomorphisms(dom: fingro.Group, cod: fingro.Group) -> list[fingro.Homomo
 	return fingro.compositions.compose_functions.get_morphisms(
 		dom=dom,
 		cod=cod,
-		pair_filter=fingro.compositions.compose_functions.pair_filters.isomorphism_pair_filter,
+		generator_images_filter=(
+			fingro
+			.compositions
+			.compose_functions
+			.gen_im_filter
+			.isomorphism_gen_im_filter
+		),
 		morphism_filter=lambda morphism : morphism.bij,
 	)

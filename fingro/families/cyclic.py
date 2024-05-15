@@ -10,7 +10,7 @@ class Cyclic(fingro.Group):
 			order
 		)
 
-		element_names = ['1', 'g'] + [f'g{i}' for i in range(2, order)]
+		element_names = ['1', 'g'] + [f'g{i}' for i in range(2, order)] if order != 1 else ['1']
 		
 		super().__init__(
 			matrix=matrix,
@@ -22,4 +22,4 @@ class Cyclic(fingro.Group):
 		)
 		
 		self._abelian = True
-		self._generators = (1,)
+		self._generators = (1,) if order != 1 else (0,)
