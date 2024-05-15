@@ -30,5 +30,5 @@ class Dihedral(fingro.Group):
 			check_group_properties=False,
 		)
 		
-		self._abelian=(k < 3)
+		self._abelian = (k < 3)
 		self._generators = (1, k)
