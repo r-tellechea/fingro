@@ -64,10 +64,6 @@ class Subgroup(fingro.Group):
 	def normal(self, value):
 		self._normal = value 
 
-	# TODO: Check normal.
-	def check_normal(self):
-		pass
-
 	@property
 	def inclusion(self):
 		if self._inclusion == None:
