@@ -2,6 +2,8 @@ import fingro
 from dataclasses import dataclass
 import numpy as np
 import plotly.express as px
+import graphviz
+from functools import reduce
 
 class Group:
 
@@ -43,6 +45,7 @@ class Group:
 		self._elements = None
 		self.elements = elements
 		self._gen_index = None
+		self._subgroups = None
 	
 	# TODO: Check matrix type and shape
 	def check_matrix_type_and_shape(self):
@@ -119,6 +122,12 @@ class Group:
 			self._gen_index = fingro.fn.gen_index(self)
 		return self._gen_index
 
+	@property
+	def subgroups(self):
+		if self._subgroups == None:
+			self._subgroups = fingro.fn.subgroups(self)
+		return self._subgroups
+
 	def __len__(self):
 		return self.order
 
@@ -158,6 +167,45 @@ class Group:
 			title=dict(font=dict(size=25))
 		)
 		return fig
+	
+	def fig_subgroups(self):
+
+		# Create graph
+		graph = graphviz.Digraph()
+		graph.attr(rankdir='BT')
+		
+		# Add nodes
+		for index, subgroup in enumerate(self.subgroups):
+			graph.node(
+				name=f'{index}',
+				label=reduce(
+					lambda x, y : f'{x}, {y}',
+					subgroup.element_names 
+						if not any(',' in name for name in subgroup.element_names)
+							else map(lambda name: f'({name})', subgroup.element_names)
+				),
+				shape='box'
+			)
+
+		# Add edges.
+		for i, subgroup_i in enumerate(self.subgroups):
+			for j, subgroup_j in enumerate(self.subgroups):
+				different = i != j
+				included = set(subgroup_i.sub_index) <= set(subgroup_j.sub_index)
+				not_intermediate = not any(
+					(
+						set(subgroup_i.sub_index) <= set(subgroup_k.sub_index)
+						and
+						set(subgroup_k.sub_index) <= set(subgroup_j.sub_index)
+						and i != k
+						and k != j
+					)
+						for k, subgroup_k in enumerate(self.subgroups)
+				)
+				if different and included and not_intermediate:
+					graph.edge(f'{i}', f'{j}')
+
+		return graph
 
 	####################
 	# Arithmetic.

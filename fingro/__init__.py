@@ -13,6 +13,7 @@ from fingro.fn import generators
 from fingro.fn import generated_subgroup
 from fingro.fn import get_subgroup
 from fingro.fn import center
+from fingro.fn import subgroups
 
 # Element manipulation
 from fingro.fn import index_power

@@ -9,6 +9,7 @@ from fingro.fn.generators import generators
 from fingro.fn.generated_subgroup import generated_subgroup
 from fingro.fn.get_subgroup import get_subgroup
 from fingro.fn.center import center
+from fingro.fn.subgroups import subgroups
 
 # Element manipulation
 from fingro.fn.index_power import index_power
