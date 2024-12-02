@@ -1,2 +1,11 @@
 .gitignore
 __pycache__
+.vscode
+
+notas.md
+
+tools
+old
+tests
+pruebas
+notas_fn.md
