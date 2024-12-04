@@ -34,6 +34,10 @@ def D8():
 	return fingro.families.Dihedral(8)
 
 @pytest.fixture
+def D17():
+	return fingro.families.Dihedral(17)
+
+@pytest.fixture
 def sub_C4_D4(D4):
 	return fingro.Subgroup(
 		group=D4,
