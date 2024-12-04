@@ -48,8 +48,8 @@ class TestSubgroupArithmetic:
 
 class TestSubgroupRelations:
 	# TODO: Subgroup Test Relations
-	@pytest.mark.skip
 	@staticmethod
+	@pytest.mark.skip
 	def test_equal(sub_C2_D4, sub_C4_D4, sub_C2_D4_tau):
 		assert sub_C2_D4 == sub_C2_D4
 		assert sub_C4_D4 == sub_C4_D4
