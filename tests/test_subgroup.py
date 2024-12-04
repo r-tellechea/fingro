@@ -1,7 +1,7 @@
 import fingro
 import pytest
 
-from tests import D4, C4, sub_C4_D4, sub_C2_D4, sub_C1_D4, sub_C2_D4_tau
+from tests.examples import D4, C4, sub_C4_D4, sub_C2_D4, sub_C1_D4, sub_C2_D4_tau
 
 
 class TestSubgroupInit:

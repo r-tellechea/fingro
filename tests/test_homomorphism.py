@@ -3,7 +3,7 @@ import pytest
 
 import numpy as np
 
-from tests import C1, C2, C4, C8, inclusion_C2_C4, projection_C4_C2, isomorphism_C4, isomorphism_not_trivial_C4, endomorphism_subgroup_C4
+from tests.examples import C1, C2, C4, C8, inclusion_C2_C4, projection_C4_C2, isomorphism_C4, isomorphism_not_trivial_C4, endomorphism_subgroup_C4
 
 
 class TestHomomorphismInit:

@@ -1,7 +1,8 @@
 import fingro
 import pytest
 
-from tests import C2, C8, D2, D3, C2xC2
+from tests.examples import C2, C8, D2, D3, C2xC2
+
 
 class TestCompositionsHomomorphismGroup:
 	@staticmethod

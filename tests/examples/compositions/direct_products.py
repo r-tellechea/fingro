@@ -1,7 +1,7 @@
 import fingro
 import pytest
 
-from tests.groups.cyclics import C2, C3
+from tests.examples.families.cyclics import C2, C3
 
 @pytest.fixture
 def C2xC2(C2):

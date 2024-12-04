@@ -3,7 +3,8 @@ import pytest
 
 import numpy as np
 
-from tests import C2, C3, C7, C8, D2, D7, C2xC2
+from tests.examples import C2, C3, C7, C8, D2, D7, C2xC2
+
 
 class TestCompositionsDirectGroup:
 	@staticmethod

@@ -1,5 +1,5 @@
 import pytest
-from tests.groups.dihedrals import D4
+from tests.examples.families.dihedrals import D4
 
 @pytest.fixture
 def group(D4):

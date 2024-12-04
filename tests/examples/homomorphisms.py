@@ -3,7 +3,7 @@ import pytest
 
 import numpy as np
 
-from tests.groups.cyclics import C2, C4
+from tests.examples.families.cyclics import C2, C4
 
 @pytest.fixture
 def inclusion_C2_C4(C2, C4):

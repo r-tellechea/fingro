@@ -5,7 +5,8 @@ import numpy as np
 import plotly.graph_objects as go
 import graphviz
 
-from tests import group, C2, C3, C4, C8, D2, D4, C2xC2, C3xC3
+from tests.examples import group, C2, C3, C4, C8, D2, D4, C2xC2, C3xC3
+
 
 class TestGroupInit:
 	@staticmethod
