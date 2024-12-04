@@ -69,10 +69,25 @@ class TestSubgroupProperties:
 
 
 class TestSubgroupArithmetic:
-	# TODO: Subgroup Test Arithmetic
-	pass
+	@staticmethod
+	def test_intersection(sub_C1_D4, sub_C4_D4, sub_C2_D4_tau):
+		assert sub_C4_D4 & sub_C2_D4_tau == sub_C1_D4
+	
+	@staticmethod
+	def test_union(sub_C4_D4, sub_C2_D4_tau, D4):
+		assert sub_C4_D4 | sub_C2_D4_tau == D4
 
 
 class TestSubgroupRelations:
 	# TODO: Subgroup Test Relations
-	pass
+	@pytest.mark.skip
+	@staticmethod
+	def test_equal(sub_C2_D4, sub_C4_D4, sub_C2_D4_tau):
+		assert sub_C2_D4 == sub_C2_D4
+		assert sub_C4_D4 == sub_C4_D4
+		assert sub_C2_D4_tau == sub_C2_D4_tau
+
+		assert not sub_C2_D4 != sub_C4_D4
+		assert not sub_C2_D4_tau != sub_C4_D4
+
+		assert sub_C2_D4 == sub_C2_D4_tau
