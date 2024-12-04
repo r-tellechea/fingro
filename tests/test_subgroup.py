@@ -1,39 +1,7 @@
 import fingro
 import pytest
 
-from tests import D4, C4
-
-@pytest.fixture
-def sub_C4_D4(D4):
-	return fingro.Subgroup(
-		group=D4,
-		sub_index=(0, 1, 2, 3),
-		name='sub_C4_D4',
-	)
-
-@pytest.fixture
-def sub_C2_D4(D4):
-	return fingro.Subgroup(
-		group=D4,
-		sub_index=(0, 2),
-		name='sub_C2_D4',
-	)
-
-@pytest.fixture
-def sub_C1_D4(D4):
-	return fingro.Subgroup(
-		group=D4,
-		sub_index=(0,),
-		name='sub_C1_D4',
-	)
-
-@pytest.fixture
-def sub_C2_D4_tau(D4):
-	return fingro.Subgroup(
-		group=D4,
-		sub_index=(0, 4),
-		name='sub_C2_D4_tau',
-	)
+from tests import D4, C4, sub_C4_D4, sub_C2_D4, sub_C1_D4, sub_C2_D4_tau
 
 
 class TestSubgroupInit:
